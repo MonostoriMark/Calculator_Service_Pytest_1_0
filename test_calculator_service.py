@@ -33,5 +33,26 @@ def test_calculate_multiplication_with_mock_verifies_get_data_called():
     calculator_service = CalculatorService(mock_repository)
     result = calculator_service.calculate_multiplication(2, 2)
     
-    assert result == 12         # 2 * 2 * 3 = 12
+    assert result == 12        # 2 * 2 * 3 = 12
     mock_repository.get_data.assert_called_once()
+
+def test_calculate_division_with_mock_verifies_get_data_called():
+    mock_repository = Mock(IDataRepository)
+    mock_repository.get_data.return_value = 2
+
+    calculator_service = CalculatorService(mock_repository)
+    result = calculator_service.calculate_division(4, 2)
+    
+    assert result == 1           # 4 / 2 / 2 = 1
+    mock_repository.get_data.assert_called_once()
+
+def test_calculate_subtraction_with_mock_verifies_get_data_called():
+    mock_repository = Mock(IDataRepository)
+    mock_repository.get_data.return_value = 2
+
+    calculator_service = CalculatorService(mock_repository)
+    result = calculator_service.calculate_subtraction(4, 2)
+    
+    assert result == 0           # 4 - 2 - 2 = 0
+    mock_repository.get_data.assert_called_once()
+
